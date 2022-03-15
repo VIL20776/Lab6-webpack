@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "bundle"),
+    path: path.resolve(__dirname, "bundle_babel"),
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -42,12 +42,16 @@ module.exports = {
           }
         ]
       },
-      
       {
         test:/\.html$/,
         use: [
           'html-loader'
         ]
+      },
+      {
+        test:/\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /(node_modules)/,
       },
     ]
   }
